@@ -1,8 +1,17 @@
-import axios from 'axios'
+// import axios from 'axios'
 
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
-    withCredentials: true,
-})
+// const axiosInstance = axios.create({
+//     baseURL: 'http://localhost:5000',
+//     withCredentials: true,
+// })
 
-export default axiosInstance;
+// export default axiosInstance;
+
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: '/.netlify/functions',
+  withCredentials: true,
+});
+
+export default instance;
