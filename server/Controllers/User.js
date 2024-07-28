@@ -26,7 +26,7 @@ export const Login = async (req, res, next) => {
         if (!isMatched) {
             return res.status(401).json("Wrong credentials");
         }
-        const token = jwt.sign({ id: isUser._id }, 'Shanmukh12345');
+        const token = jwt.sign({ id: isUser._id }, '87654321');
         if (isUser) {
             const { password, ...userRes } = isUser._doc;
             return res.status(201).cookie('token', { token }, { httpOnly: true }).json({ user: userRes });

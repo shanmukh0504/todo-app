@@ -18,11 +18,13 @@ import {
 } from "@mui/material";
 
 const Task = ({ task }) => {
+  
   const [status, setStatus] = useState(task.status);
   const [subTasks, setSubTasks] = useState(task.subTasks || []);
   const navigate = useNavigate();
 
   useEffect(() => {
+    
     setStatus(task.status);
     setSubTasks(task.subTasks);
   }, [task.status, task.subTasks]);
@@ -67,8 +69,8 @@ const Task = ({ task }) => {
     window.location.reload();
   };
 
-
-
+  if (!task) return null;
+  
   return (
     <Box sx={{ minWidth: 283 }}>
       <Card>

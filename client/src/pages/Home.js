@@ -33,9 +33,14 @@ const Home = () => {
   useEffect(() => {
     axios.get(`/task?type=${typeFilter}&day=${dayFilter}&status=${statusFilter}`)
       .then((res) => {
-        dispatch(setTasks(res.data.tasks));
+        if (Array.isArray(res.data.tasks)) {
+          dispatch(setTasks(res.data.tasks)); // Pass array directly
+        } else {
+          console.error('Expected tasks to be an array', res.data.tasks);
+        }
       });
   }, [dispatch, typeFilter, dayFilter, statusFilter]);
+  
 
   const { tasks } = useSelector((state) => state.task);
 
@@ -97,14 +102,15 @@ const Home = () => {
           <Button onClick={() => { setTypeFilter(''); setDayFilter(''); setStatusFilter('') }}>Clear filters</Button>
         </Box>
         <Box mt="2rem">
-          <Grid container spacing={2}>
-            {tasks.map((task, idx) => (
-              <Grid item xs={12} md={3} key={`${idx}-${task.id}`}>
-                <Task task={task} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+  <Grid container spacing={2}>
+    {tasks.map((task, idx) => task && (
+      <Grid item xs={12} md={3} key={`${idx}-${task.id}`}>
+        <Task task={task} />
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+
       </Container>
     </Box>
   );

@@ -1,18 +1,21 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const verifyJwtToken = async(req,res,next) => {
-    try{
-      const token = req.cookies.token.token
-      if(!token) return res.status(401).json({mesage: 'Unauthorized'})
-      jwt.verify(token , "Shanmukh12345" , (err , user) => {
-        if(err) {
-            return res.status(401).json({message: 'Wrong credentials'})
-        }
-        req.user = user
-      })
-      next()
+export const verifyJwtToken = async (req, res, next) => {
+  try {
+    const token = req.cookies?.token?.token;
+    if (!token) {
+      return res.status(401).redirect('/');
     }
-    catch(err) {
-        next(err)
-    }
-}
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+      if (err) {
+        return res.status(401).json({ message: 'Wrong credentials' });
+      }
+      req.user = user;
+      next();
+    });
+  } catch (err) {
+    res.status(400).redirect('/');
+  }
+};

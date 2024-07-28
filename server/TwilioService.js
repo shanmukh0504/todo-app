@@ -1,10 +1,11 @@
 //TwilioServer.js
 import twilio from 'twilio';
-
+import dotenv from 'dotenv';
+dotenv.config();
 // Your Twilio credentials
-const accountSid = YOUR_SSID;
-const authToken = YOUR_AUTH_TOKEN;
-const twilioPhoneNumber = YOUR_TWILIO_PHNO;
+const accountSid = process.env.SSID;
+const authToken = process.env.AUTH_TOKEN;
+const twilioPhoneNumber = process.env.PHNO;
 
 // Create Twilio client
 const client = twilio(accountSid, authToken);
