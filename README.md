@@ -54,21 +54,21 @@ Say goodbye to disorganized to-do lists and hello to productivity mastery with m
 
 ### Install
 
-    $ git clone https://github.com/shanmukh0504/todo-app.git
-    $ cd todo-app
-    $ npm install
+    git clone https://github.com/shanmukh0504/todo-app.git
+    cd todo-app
+    npm install
 
 ### Running the project
 - #### Running Backend
   ```
-    $ cd server
-    $ npm start
+    cd server
+    npm start
   ```
 - #### Running Frontend
   ```
-    $ cd client
-    $ npm start
+    cd client
+    npm start
   ```
  ### Simple build for production
 
-    $ npm build
+    npm build
